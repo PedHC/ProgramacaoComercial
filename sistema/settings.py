@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'veiculos.apps.VeiculosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +51,21 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'sistema.urls'
+
+
+LOGGING = {
+    'version':1,
+    'disable_existing_loggers':False,
+    'handlers':{
+        'console':{
+            'class':'logging.StreamHandler',
+        },
+    },
+    'root':{
+        'handlers':['console'],
+        'level':'INFO',
+    },
+}
 
 TEMPLATES = [
     {
