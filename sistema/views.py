@@ -5,6 +5,7 @@ class Autentificacao(View):
     def get(self,request):
         contexto = {
             'usuario':  '',
-            'senha':    ''
+            'senha':    '',
+            'mensagem': 'Programação Comercial'
         }
         return render(request,'autentificacao.html', contexto)
