@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="uft-8">
+        <title>Login sistema</title>
+    </head>
+    <body>
+        <form action="/" method="POST">
+            {% csrf_token %}
+            <label>Login</label>
+            <input type="text" name="usuario" id="usuario" value="{{usuario}}" />
+            <label>Senha</label>
+            <input type="text" name="senha" id="senha" value="{{senha}}" />
+            <input type="submit" value="Login" />
+        </form>
+        <div>
+            <center>
+                {{mensagem}}
+            </center>
+        </div>
+    </body>
+</html>
