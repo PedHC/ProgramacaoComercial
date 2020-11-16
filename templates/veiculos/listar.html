@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lista de veiculos cadastrados</title>
+    </head>
+    <body>
+        <ul>
+            {% for veiculo in lista_veiculos %}
+            <li>
+                {{ forloop.counter }} - {{ veiculo.marca | upper  }} {{ veiculo.modelo | lower}} ({{veiculo.ano_fabricacao}})
+                {% if veiculo.ano_fabricacao <= 2015%}
+                Modelo antigo
+                {% endif %}
+            </li>
+            
+            {% empty %}
+            <li>Nenhum veiculo cadastrado até o momento</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
