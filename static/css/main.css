@@ -31,3 +31,21 @@
     font-weight: 600;
     text-decoration: none;
 }
+
+.veiculo-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.veiculo-container list{
+    padding: 10%;
+}
+
+.veiculo-list{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.veiculo-list h3{
+    text-align: center;
+    color: #333;
+}

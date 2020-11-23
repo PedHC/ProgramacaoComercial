@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Novo Veículo</title>
+    </head> 
+    <body>
+        <form action="/veiculos/novo/" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="reset" value="Limpar"/>
+            <input type="submit" value="Salvar"/>
+        </form>
+    </body>   
+</html>

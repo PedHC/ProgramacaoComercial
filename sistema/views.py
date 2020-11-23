@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login
 from django.views.generic import View
 from django.http import HttpResponse
@@ -25,7 +25,7 @@ class Autentificacao(View):
         if user is not None:
             if user.is_active:
                 login(request,user)
-                return HttpResponse("Usuário autenticado com sucesso")
+                return redirect('/veiculos')
             return render(request, 'autentificacao.html', {'mensagem':'usuario inativo'})
         return render(request, 'autentificacao.html', {'mensagem':'Usuario ou senha incorreto'})
 
