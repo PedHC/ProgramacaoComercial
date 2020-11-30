@@ -4,10 +4,10 @@ from django.db import models
 class Veiculo(models.Model):
     marca = models.CharField(max_length=100)
     modelo = models.CharField(max_length=100)
-    ano_fabricacao = models.IntegerField()
-    modelo_fabricacao = models.IntegerField()
+    ano_fabricacao = models.PositiveIntegerField(default=2000)
+    modelo_fabricacao = models.PositiveIntegerField(default=2000)
     
-    valor = models.IntegerField(default=10000)
+    valor = models.PositiveIntegerField(default=10000)
     
     combustivel = models.SmallIntegerField(choices=[(1,'ETANOl'),(2,'FLEX'),(3,'GASOLINA')])
 
