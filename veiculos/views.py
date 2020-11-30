@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate,login
-from django.views.generic import ListView,CreateView
+from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 from veiculos.models import Veiculo
 from veiculos.forms import FormularioVeiculo
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
+
 class VeiculosList(ListView):
     model = Veiculo
     context_object_name = "lista_veiculos"
@@ -16,4 +19,15 @@ class VeiculosNew(CreateView):
     model = Veiculo
     form_class = FormularioVeiculo
     template_name = 'veiculos/novo.html'
+    success_url = reverse_lazy('lista_veiculos')
+
+class VeiculosEdit(UpdateView):
+    model = Veiculo
+    form_class = FormularioVeiculo
+    template_name = 'veiculos/editar.html'
+    success_url = reverse_lazy('lista_veiculos')
+
+class VeiculosDelete(DeleteView):
+    model = Veiculo
+    template_name = 'veiculos/excluir.html'
     success_url = reverse_lazy('lista_veiculos')

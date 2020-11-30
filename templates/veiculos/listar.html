@@ -32,6 +32,7 @@
                             <th>Descrição</th>
                             <th>Valor</th>
                             <th>Idade</th>
+                            <th>Ações</th>
                         </thead>
                         <tbody>
                             {% for veiculo in lista_veiculos %}
@@ -46,6 +47,7 @@
                                         Modelo novo.
                                     {% endif %}
                                 </td>
+                                <td><a href="/veiculos/{{ veiculo.pk }}"><i class="fas fa-edit"></i></a> <a href="/veiculos/excluir/{{ veiculo.pk }}"><i class="far fa-trash-alt"></i></a></td>
                             </tr>
                             {% empty %}
                             <tr>
