@@ -5,29 +5,38 @@ from veiculos.models import Veiculo
 from veiculos.forms import FormularioVeiculo
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
-# Create your views here.
-@method_decorator(login_required, name='dispatch')
+from sistema.utilitarios import AutenticacaoObrigatoria
 
-class VeiculosList(ListView):
+class VeiculosList(AutenticacaoObrigatoria,ListView):
     model = Veiculo
     context_object_name = "lista_veiculos"
     template_name = "veiculos/listar.html"
 
-class VeiculosNew(CreateView):
+
+
+class VeiculosNew(AutenticacaoObrigatoria,CreateView):
     model = Veiculo
     form_class = FormularioVeiculo
     template_name = 'veiculos/novo.html'
     success_url = reverse_lazy('lista_veiculos')
 
-class VeiculosEdit(UpdateView):
+class VeiculosEdit(AutenticacaoObrigatoria,UpdateView):
     model = Veiculo
     form_class = FormularioVeiculo
     template_name = 'veiculos/editar.html'
     success_url = reverse_lazy('lista_veiculos')
 
-class VeiculosDelete(DeleteView):
+class VeiculosDelete(AutenticacaoObrigatoria,DeleteView):
     model = Veiculo
     template_name = 'veiculos/excluir.html'
     success_url = reverse_lazy('lista_veiculos')
+
+
+from veiculos.serializers import SerializadorVeiculo
+from rest_framework.generics import ListAPIView
+
+class VeiculosListAPI(ListAPIView):
+    serializer_class = SerializadorVeiculo
+
+    def get_queryset(self):
+        return Veiculo.objects.all()
