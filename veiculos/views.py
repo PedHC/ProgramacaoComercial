@@ -7,26 +7,26 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from sistema.utilitarios import AutenticacaoObrigatoria
 
-class VeiculosList(AutenticacaoObrigatoria,ListView):
+class VeiculosList(ListView):
     model = Veiculo
     context_object_name = "lista_veiculos"
     template_name = "veiculos/listar.html"
 
 
 
-class VeiculosNew(AutenticacaoObrigatoria,CreateView):
+class VeiculosNew(CreateView):
     model = Veiculo
     form_class = FormularioVeiculo
     template_name = 'veiculos/novo.html'
     success_url = reverse_lazy('lista_veiculos')
 
-class VeiculosEdit(AutenticacaoObrigatoria,UpdateView):
+class VeiculosEdit(UpdateView):
     model = Veiculo
     form_class = FormularioVeiculo
     template_name = 'veiculos/editar.html'
     success_url = reverse_lazy('lista_veiculos')
 
-class VeiculosDelete(AutenticacaoObrigatoria,DeleteView):
+class VeiculosDelete(DeleteView):
     model = Veiculo
     template_name = 'veiculos/excluir.html'
     success_url = reverse_lazy('lista_veiculos')
