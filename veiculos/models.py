@@ -2,6 +2,8 @@ from django.db import models
 from datetime import datetime
 
 # Create your models here.
+
+
 class Veiculo(models.Model):
     marca = models.CharField(max_length=100)
     modelo = models.CharField(max_length=100)
@@ -22,3 +24,4 @@ class Veiculo(models.Model):
     @property
     def anos_de_uso(self):
         return datetime.now().year - self.ano_fabricacao
+

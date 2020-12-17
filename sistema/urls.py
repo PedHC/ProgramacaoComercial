@@ -18,6 +18,7 @@ from django.urls import path,include
 from sistema.views import Autentificacao
 urlpatterns = [
     path('', Autentificacao.as_view(),name = 'index'),
+    path('cabeleleiros/', include('cabeleleiros.urls')),
     path('veiculos/', include('veiculos.urls')),
     path('admin/', admin.site.urls),
 ]

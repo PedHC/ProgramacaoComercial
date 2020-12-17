@@ -25,7 +25,7 @@ class Autentificacao(View):
         if user is not None:
             if user.is_active:
                 login(request,user)
-                return redirect('veiculos/')
+                return redirect('cabeleleiros/')
             return render(request, 'autentificacao.html', {'mensagem':'usuario inativo'})
         return render(request, 'autentificacao.html', {'mensagem':'Usuario ou senha incorreto'})
 

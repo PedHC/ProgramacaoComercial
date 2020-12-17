@@ -34,6 +34,7 @@ LOGIN_URL = '/'
 INSTALLED_APPS = [
     'bootstrapform',
     'veiculos.apps.VeiculosConfig',
+    'cabeleleiros.apps.CabeleleirosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
