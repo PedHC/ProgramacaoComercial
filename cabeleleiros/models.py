@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 # Create your models here.
 
 class Cliente(models.Model):
@@ -36,11 +36,13 @@ class Horario(models.Model):
         nomeCliente = self.idCliente.nome
         servico = self.idServico.descricao
         return 'Horario: {0} {1} às {2} {3}  - Cliente: {4} - Cabeleleiro(a): {5} - Serviço: {6}'.format(self.horaInicio.date().strftime("%d/%m/%Y"),self.horaInicio.time().strftime("%H:%M"),self.horaFim.date().strftime("%d/%m/%Y"),self.horaFim.time().strftime("%H:%M"),nomeCliente,nomeCabeleleiro,servico)
-'''
-    @permalink
-    def get_absolute_url(self):
-        return ('myurlname', (), {'myparam': something_useful})
-'''
+
+    @property
+    def expirado(self):
+        if self.horaInicio < datetime.now():
+            return True
+        return False
+
 
 
     
