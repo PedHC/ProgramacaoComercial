@@ -1,23 +1,41 @@
 from django import forms
 from cabeleleiros.models import Horario,Cliente,Cabeleleiro,Servico
 from datetime import datetime, timedelta
-
 class FormularioHorario(forms.ModelForm):
     """
     Formulario para o model Horario
     """
+    hora = forms.TimeField(widget=forms.TimeInput(attrs={'data-target':'timepicker'}))
+    data = forms.DateField(widget=forms.DateInput(attrs={'data-target':'datepicker'}))
     class Meta:
         model = Horario
-        exclude = ['horaFim']
+        fields = ['idCliente','idServico','idCabeleleiro','hora','data']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['idCabeleleiro'].label = 'Cabeleleiro'
         self.fields['idCliente'].label = 'Cliente'
         self.fields['idServico'].label = 'Serviço'
-        self.fields['horaInicio'].label = 'Data/Hora (dd/mm/aaaa 00:00)'
+        #self.fields['horaInicio'].label = 'Data/Hora (dd/mm/aaaa 00:00)'
         for campo in self.fields:
             self.fields[campo].widget.attrs.update({'class':'form-control'})
+
+class FormularioHorarioEdit(forms.ModelForm):
+    
+    class Meta:
+        model = Horario
+        exclude=['horaFim']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['idCabeleleiro'].label = 'Cabeleleiro'
+        self.fields['idCliente'].label = 'Cliente'
+        self.fields['idServico'].label = 'Serviço'
+        self.fields['horaInicio'].label = 'Data/Hora'
+        for campo in self.fields:
+            self.fields[campo].widget.attrs.update({'class':'form-control'})
+
+
     '''
     def save(self, *args, **kwargd):
         self.fields['horaFim'] = self.fields['horaInicio'] + timedelta(hours=1)

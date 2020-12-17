@@ -36,10 +36,17 @@
                         <div class="row justify-content-center">
                             {% csrf_token %}
                             {% for field in form %}
-                            <div class="col-md-8 mb-2">
-                                {{field.label}}
-                                {{field}}
-                            </div>
+                                {% if field.label in "['Data','Hora']" %}
+                                    <div class="col-md-5 mb-2">
+                                        {{field.label}}
+                                        {{field}}
+                                    </div>
+                                {%else%}
+                                    <div class="col-md-8 mb-2">
+                                        {{field.label}}
+                                        {{field}}
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                             <div class="col-md-6 offset-md-6 text-right mt-4">
                                 <button type="reset" class="btn btn-secondary" value="Limpar"><i class="fas fa-broom fa-lg"></i> Limpar</button>
@@ -52,5 +59,15 @@
         </div>
         
     </body> 
-    
+    <script type="text/javascript">
+        $("#id_data").datetimepicker({
+            timepicker:false,
+            format:"d/m/Y"
+        });
+        $("#id_hora").datetimepicker({
+            datepicker:false,
+            format: "H:i"
+        });
+        
+    </script>
 </html>
